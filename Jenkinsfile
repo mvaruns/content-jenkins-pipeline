@@ -10,7 +10,12 @@ pipeline {
 			}
       stage('run'){
       steps{
-      sh 'java -jar rectangle.jar 11 10'
+        sh 'java -jar rectangle.jar 11 10'
+        }
+      }
+      post {
+        success {
+          archiveArtifacts artifacts: 'rectangle.jar', fingerprint: true
         }
       }
     }
